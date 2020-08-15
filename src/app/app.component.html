@@ -298,25 +298,27 @@
   }
 </style>
 
-<div class="container">
-  <ul class="list-group">
-    <app-article  *ngFor="let article of articles; let i = index"
-                   [articleName]="article.name"
-                   [articleStatus]="article.status"
-                   [index]="i"></app-article>
-  </ul>
-  <div class="row">
-  <button class="btn btn-success"
-          [disabled]="!isAuth"
-          (click)="onAllumer()">Tout allumer</button>
-  <button class="btn btn-danger"
-          [disabled]="!isAuth"
-          (click)="onEteindre()">Tout éteindre</button>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-collapse">
+      
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
+        <li routerLinkActive="active"><a routerLink="articles">Articles</a></li>
+        <li routerLinkActive="active"><a routerLink="users">Utilisateurs</a></li>
+        <li routerLinkActive="active"><a routerLink="newuser">inscription</a></li>
+        <li routerLinkActive="active"><a routerLink="editarticle">Nouvel Article</a></li>
+      </ul>
+      
+    </div>
   </div>
-
-  
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
-
-
 
 <router-outlet></router-outlet>

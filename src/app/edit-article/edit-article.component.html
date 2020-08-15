@@ -1,0 +1,22 @@
+<div class="col-sm-8 col-sm-offset-2">
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmitForm()">
+      <div class="form-group">
+        <label for="title">Titre de l'article</label>
+        <input type="text" id="title" class="form-control" formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" class="form-control" formControlName="description">
+      </div>
+      <div class="form-group">
+        <label for="image">image</label>
+        <input type="text" id="image" class="form-control" formControlName="image">
+      </div>
+      <div class="form-group">
+        <label for="price">price</label>
+        <input type="number" id="price" class="form-control" formControlName="price">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+  </div>

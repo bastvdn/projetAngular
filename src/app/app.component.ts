@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from './services/article.service';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { Observable } from 'rxjs';
+import { interval } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -7,30 +12,23 @@ import { ArticleService } from './services/article.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  isAuth = true;
-  title = "hello"
+  
+  title = "hello";
+  isAuth: boolean = false;
+  
 
-  articles: any[];
-
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService, private authService: AuthService) {
     
 
   }
 
   ngOnInit(){
-    this.articles = this.articleService.articles;
+
+    const counter = interval(1000);
 
   }
 
-  onAllumer() {
-    this.articleService.switchOnAll();
-  }
-  onEteindre() {
-    if(confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
-      this.articleService.switchOffAll();
-    } else {
-      return null;
-    }
+  
 }
 
-}
+

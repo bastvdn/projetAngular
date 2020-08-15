@@ -8,9 +8,13 @@ import { ArticleService } from '../services/article.service';
 })
 export class ArticleComponent implements OnInit {
 
-  @Input() articleName: string;
-  @Input() articleStatus: string;
-  @Input() index: number;
+  @Input() articleTitle: string;
+  @Input() articleDescription: string;
+  @Input() articlePrice: string;
+  @Input() image: string;
+  @Input() id: number;
+
+  
 
   status: string = "ok";
 
@@ -25,18 +29,7 @@ export class ArticleComponent implements OnInit {
 
   constructor(private articleService: ArticleService) { }
 
-  onSwitch() {
-    if(this.articleStatus === 'allumé') {
-      this.articleService.switchOffOne(this.index);
-    } else if(this.articleStatus === 'éteint') {
-      this.articleService.switchOnOne(this.index);
-    }
-}
-
-  getStatus(){
-    return status;
-    
-  }
+  
 
   ngOnInit(): void {
   }
