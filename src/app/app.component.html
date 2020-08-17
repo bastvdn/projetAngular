@@ -303,11 +303,27 @@
     <div class="navbar-collapse">
       
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
+        <li><a routerLink="articles">ebaille</a></li>
         <li routerLinkActive="active"><a routerLink="articles">Articles</a></li>
-        <li routerLinkActive="active"><a routerLink="users">Utilisateurs</a></li>
-        <li routerLinkActive="active"><a routerLink="newuser">inscription</a></li>
-        <li routerLinkActive="active"><a routerLink="editarticle">Nouvel Article</a></li>
+        <li routerLinkActive="active"><a routerLink="editarticle" *ngIf="isAuth">Nouvel Article</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" *ngIf="!isAuth">
+          <a routerLink="auth">Créer un compte</a>
+        </li>
+        <li routerLinkActive="active" *ngIf="!isAuth">
+          <a routerLink="signin">Connexion</a>
+        </li>
+        <li>
+          <a (click)="onSignOut()"
+             style="cursor:pointer"
+             *ngIf="isAuth">{{ userName }}</a>
+        </li>
+        <li>
+          <a (click)="onSignOut()"
+             style="cursor:pointer"
+             *ngIf="isAuth">Déconnexion</a>
+        </li>
       </ul>
       
     </div>

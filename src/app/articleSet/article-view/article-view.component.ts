@@ -1,9 +1,11 @@
-import { Article } from './../models/Article.model';
+
 import { Component, OnInit, Input } from '@angular/core';
-import { ArticleService } from '../services/article.service';
-import { AuthService } from '../services/auth.service';
+
 
 import { Subscription } from 'rxjs';
+import { ArticleService } from 'src/app/services/article.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Article } from 'src/app/models/Article.model';
 
 @Component({
   selector: 'app-article-view',
@@ -20,24 +22,31 @@ export class ArticleViewComponent implements OnInit {
   constructor(private articleService: ArticleService, private authService : AuthService) { }
 
   ngOnInit() {
+    
     this.articleSubscription = this.articleService.articlesSubject.subscribe(
       (articles: Article[]) => {
         this.articles = articles
-
       }
-
     )
     this.articleService.emitArticleSubject();
   }
 
   onSave(){
-
-    this.articleService.saveArticlesToServer()
+    this.articleService.getArticles();
+    
   }
   
   onFetch(){
-    this.articleService.getArticlesFromServer()
+    
 
+  }
+
+  onDeleteArticle(article: Article) {
+    this.articleService.removeArticle(article);
+  }
+
+  ngOnDestroy(){
+    this.articleSubscription.unsubscribe();
   }
 
 }

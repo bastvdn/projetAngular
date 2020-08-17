@@ -16,7 +16,15 @@
         <label for="price">price</label>
         <input type="number" id="price" class="form-control" formControlName="price">
       </div>
+      <div class="form-group">
+        <select class="browser-default custom-select">
+          <option selected>Categorie</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{cat.title}}</option>
+          
+        </select>
+      </div>
       
+
       <button type="submit" class="btn btn-primary">Soumettre</button>
     </form>
   </div>

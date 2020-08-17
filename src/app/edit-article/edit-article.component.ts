@@ -1,3 +1,6 @@
+import { AuthService } from 'src/app/services/auth.service';
+import { Categorie } from './../models/Categorie.model';
+import { CategorieService } from './../services/categorie.service';
 import { ArticleService } from './../services/article.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -6,6 +9,8 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { Article } from '../models/Article.model';
 import { User } from '../models/User.model';
+import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'app-edit-article',
@@ -15,14 +20,19 @@ import { User } from '../models/User.model';
 export class EditArticleComponent implements OnInit {
 
   articleForm: FormGroup;
+  public categories: Categorie[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private articleService: ArticleService,
-              private router: Router) { }
+              private categorieService: CategorieService,
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.categories = this.categorieService.getCategories();
+    console.log(this.categories);
   }
 
   initForm(){
@@ -30,7 +40,8 @@ export class EditArticleComponent implements OnInit {
       title: '',
       description: '',
       price: '',
-      image: ''
+      image: '',
+      categorie: '',
       
     });
 
@@ -44,13 +55,14 @@ export class EditArticleComponent implements OnInit {
       formValue['description'],
       formValue['price'],
       formValue['image'],
-      
       new Date(),
-      "rien",
-      new User()
+      formValue['categorie'],
+      this.authService.getUserFromEmail(firebase.auth().currentUser.email)
     );
+    console.log(this.articleService.articles);
     this.articleService.addArticle(newArticle);
-    console.log(this.articleService.articles)
+   
+    
     this.router.navigate(['/articles']);
   }
 

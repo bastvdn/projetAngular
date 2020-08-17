@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder , Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  selector: 'app-login-user',
+  templateUrl: './login-user.component.html',
+  styleUrls: ['./login-user.component.css']
 })
-export class AuthComponent implements OnInit {
+export class LoginUserComponent implements OnInit {
 
   signupForm: FormGroup;
   errorMessage: string;
@@ -25,7 +25,6 @@ export class AuthComponent implements OnInit {
 
   initForm() {
     this.signupForm = this.formBuilder.group({
-      username: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
     });
@@ -34,9 +33,8 @@ export class AuthComponent implements OnInit {
   onSubmit() {
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
-    const username = this.signupForm.get('username').value;
-
-    this.authService.createNewUser(email, password, username).then(
+    
+    this.authService.signInUser(email, password).then(
       () => {
         this.router.navigate(['/articles']);
       },
@@ -46,4 +44,5 @@ export class AuthComponent implements OnInit {
     );
   }
 }
+
 

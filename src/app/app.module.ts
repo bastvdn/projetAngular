@@ -1,11 +1,12 @@
+import { CategorieService } from './services/categorie.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MainComponent } from './main/main.component';
-import { ArticleComponent } from './article/article.component';
+
+import { ArticleComponent } from './articleSet/article/article.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleService } from './services/article.service';
@@ -18,18 +19,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
-import { ArticleViewComponent } from './article-view/article-view.component';
-import { SingleArticleComponent } from './single-article/single-article.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { NewUserComponent } from './new-user/new-user.component';
+import { ArticleViewComponent } from './articleSet/article-view/article-view.component';
+import { SingleArticleComponent } from './articleSet/single-article/single-article.component';
+
+
+
 import { EditArticleComponent } from './edit-article/edit-article.component';
+import { LoginUserComponent } from './login-user/login-user.component';
 
 const appRoutes: Routes = [
   { path: 'articles', component: ArticleViewComponent },
-  { path: 'articles/:id', canActivate: [AuthGuard], component: SingleArticleComponent },
-  { path: 'users', component: UserListComponent },
+  { path: 'articles/:id', component: SingleArticleComponent },
+  
   { path: 'auth', component: AuthComponent },
-  { path: 'newuser', component: NewUserComponent },
+  { path: 'signin', component: LoginUserComponent },
   { path: 'editarticle', component: EditArticleComponent },
   { path: '', component: ArticleViewComponent }
 
@@ -38,14 +41,14 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     ArticleComponent,
     AuthComponent,
     ArticleViewComponent,  
     SingleArticleComponent,
-    UserListComponent,
-    NewUserComponent,
-    EditArticleComponent
+    
+    EditArticleComponent,
+    LoginUserComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ const appRoutes: Routes = [
     ArticleService,
     AuthService,
     AuthGuard,
-    UserService
+    UserService,
+    CategorieService
 
   ],
   bootstrap: [AppComponent]

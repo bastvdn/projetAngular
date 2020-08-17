@@ -1,4 +1,6 @@
+import { Categorie } from './Categorie.model';
 import { User } from './User.model';
+import { Timestamp } from 'rxjs';
 
 export class Article {
     constructor(
@@ -7,8 +9,9 @@ export class Article {
       public description: any,
       public price: number,
       public image: string,
-      public date: Date,
-      public categorie: string,
-      public Author: User
+      public date: any,
+      public categorie: Categorie,
+      public Author: User,
+      
     ) {}
   }
