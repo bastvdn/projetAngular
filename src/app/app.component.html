@@ -15,6 +15,7 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: blue;
   }
 
   h1,
@@ -43,7 +44,7 @@
     display: flex;
     align-items: center;
     background-color: #1976d2;
-    color: white;
+    color: blue;
     font-weight: 600;
   }
 
@@ -298,7 +299,8 @@
   }
 </style>
 
-<nav class="navbar navbar-default">
+
+<nav class="navbar navbar-default bg-black">
   <div class="container-fluid">
     <div class="navbar-collapse">
       
@@ -312,7 +314,7 @@
           <a routerLink="auth">Créer un compte</a>
         </li>
         <li routerLinkActive="active" *ngIf="!isAuth">
-          <a routerLink="signin">Connexion</a>
+          <a routerLink="login">Connexion</a>
         </li>
         <li>
           <a (click)="onSignOut()"
@@ -337,4 +339,3 @@
   </div>
 </div>
 
-<router-outlet></router-outlet>

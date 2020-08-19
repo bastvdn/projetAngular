@@ -22,6 +22,7 @@ export class ArticleService {
       setTimeout(
         () => {
           this.getArticles();
+          this.emitArticleSubject()
         }, 100
       );
       
@@ -84,4 +85,13 @@ export class ArticleService {
       console.log(article);
       return article;
   }
+    getArticlesByCat(cat: string){
+      const article = this.articles.find(
+        articleL => 
+          articleL.categorie.title === cat
+        
+      );
+      console.log(article);
+      return article;
+    }
 }

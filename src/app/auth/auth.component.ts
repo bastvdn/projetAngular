@@ -38,7 +38,7 @@ export class AuthComponent implements OnInit {
 
     this.authService.createNewUser(email, password, username).then(
       () => {
-        this.router.navigate(['/articles']);
+        this.router.navigate(['/login']);
       },
       (error) => {
         this.errorMessage = error;

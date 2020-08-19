@@ -30,12 +30,11 @@ import { LoginUserComponent } from './login-user/login-user.component';
 const appRoutes: Routes = [
   { path: 'articles', component: ArticleViewComponent },
   { path: 'articles/:id', component: SingleArticleComponent },
-  { path: 'articles/:cat', component: ArticleViewComponent },
   
   { path: 'auth', component: AuthComponent },
-  { path: 'signin', component: LoginUserComponent },
+  { path: 'login', component: LoginUserComponent },
   { path: 'editarticle', component: EditArticleComponent },
-  { path: '', component: ArticleViewComponent }
+  
 
 ];
 

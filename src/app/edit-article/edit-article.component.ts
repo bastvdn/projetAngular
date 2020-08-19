@@ -3,7 +3,7 @@ import { Categorie } from './../models/Categorie.model';
 import { CategorieService } from './../services/categorie.service';
 import { ArticleService } from './../services/article.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 import { Router } from '@angular/router';
@@ -37,11 +37,11 @@ export class EditArticleComponent implements OnInit {
 
   initForm(){
     this.articleForm = this.formBuilder.group({
-      title: '',
-      description: '',
-      price: '',
-      image: '',
-      categorie: '',
+      title: ['',Validators.required, Validators.min(5)],
+      description: ['',Validators.required],
+      price: ['',Validators.required],
+      image: ['',Validators.required],
+      categorie: ['',Validators.required],
       
     });
 
@@ -49,6 +49,11 @@ export class EditArticleComponent implements OnInit {
 
   onSubmitForm() {
     const formValue = this.articleForm.value;
+    console.log(formValue['categorie']);
+    const cat =  this.categories.find(el => el.title === formValue['categorie']);
+    console.log(cat);
+    
+    
     const newArticle = new Article(
       1,
       formValue['title'],
@@ -56,14 +61,20 @@ export class EditArticleComponent implements OnInit {
       formValue['price'],
       formValue['image'],
       new Date(),
-      formValue['categorie'],
+      cat,
       this.authService.getUserFromEmail(firebase.auth().currentUser.email)
     );
-    console.log(this.articleService.articles);
+    
     this.articleService.addArticle(newArticle);
    
     
     this.router.navigate(['/articles']);
+  }
+
+  onFetcs(){
+    const formValue = this.articleForm.value;
+    console.log(formValue['categorie']);
+    
   }
 
 }

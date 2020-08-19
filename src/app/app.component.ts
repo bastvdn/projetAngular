@@ -1,6 +1,7 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from './services/article.service';
-import { AuthService } from './services/auth.service';
+
 import { UserService } from './services/user.service';
 import { Observable } from 'rxjs';
 import { interval } from 'rxjs';
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit{
 
   title = "projetAngular"
 
-  constructor(private articleService: ArticleService, private authService: AuthService, private categorieService: CategorieService) {
+  constructor(private authService: AuthService) {
     var firebaseConfig = {
       apiKey: "AIzaSyAdaJFEM7SPpM0ppKiuPBleQj10sLiEolw",
       authDomain: "projetangular-a0116.firebaseapp.com",

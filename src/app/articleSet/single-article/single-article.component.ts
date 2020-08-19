@@ -1,9 +1,11 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/models/Article.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { User } from 'src/app/models/User.model';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -19,8 +21,21 @@ export class SingleArticleComponent implements OnInit {
   image : string;
   price : number;
   author : string;
+  authorMail: string;
+  categorie : string;
+  edit : boolean = false;
 
-  constructor(private articleService: ArticleService, private route: ActivatedRoute) { }
+  constructor(private articleService: ArticleService, private route: ActivatedRoute, private authService : AuthService, private router : Router) { 
+    
+    const id = this.route.snapshot.params['id'];
+        this.article = this.articleService.getArticleById(+id);
+    this.title = this.article.title;
+    this.description = this.article.description;
+    this.image = this.article.image;
+    this.price = this.article.price;
+    this.author = this.article.Author.username;
+    this.categorie = this.article.categorie.title;
+  }
 
   ngOnInit() {
     setTimeout(
@@ -32,24 +47,19 @@ export class SingleArticleComponent implements OnInit {
     this.image = this.article.image;
     this.price = this.article.price;
     this.author = this.article.Author.username;
-    console.log("auteur :" + this.image);
+    this.authorMail = this.article.Author.email;
+    this.categorie = this.article.categorie.title;
+    if(this.authService.getUserFromEmail(firebase.auth().currentUser.email).username == this.author){
+      this.edit = true;
+
+    }
       }, 500
     );
-   
-
   }
-
-  onFetch(){
-    const id = this.route.snapshot.params['id'];
-    console.log(id);
-    this.article = this.articleService.getArticleById(+id);
-    console.log(this.article);
-    this.title = this.article.title;
-    this.description = this.article.description;
-    this.image = this.article.image;
-    this.price = this.article.price;
-    this.author = this.article.Author.username;
-
+  onDel(){
+    this.articleService.removeArticle(this.article);
+    this.router.navigate(['/articles'])
+    
   }
 
 }

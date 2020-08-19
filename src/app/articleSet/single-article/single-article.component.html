@@ -1,24 +1,32 @@
-<h2>Titre: {{ title }}</h2>
-<p> Description : {{ description }}</p>
-
-<div width="640px" height="400px">
+<div class="jumbotron" style="margin-left: 20px;margin-right: 20px;padding-left: 20px;">
+  <table class="table table-hover">
+    <tbody>
+        <tr class="table-active">
+            <th scope="col">
+              <h1 class="display-3">{{ title }}</h1>
+              <p class="lead">Catégorie: {{ categorie }}</p>
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">
+              <h3 class="display-3">{{ price }} €</h3>
+            </th>
+        </tr>
+    </tbody>
+</table> 
+  
+  <hr class="my-4">
+  <div width="1280px" height="720px">
     <img style="height: max-height; width: max-width;max-width: 640px;max-height: 400px; display: block; margin-left: auto; margin-right: auto;" [src]="image" alt="Card image">
+</div>
+<h5 class="display-4">{{ description }}</h5>
+<hr class="my-4">
+<h5 class="display-3">Par {{ author }}</h5>
+<h5 class="display-3">Contact: {{ authorMail }}</h5>
+
+<button class="btn btn-danger" *ngIf="edit"
+    (click)="onDel()">Supprimer</button>
+
 </div>
 
 
-<h3>{{ price }} €</h3>
-<h3>Par {{ author }}</h3>
-<a routerLink="/articles">Retour à la liste</a>
-
-<button class="btn btn-primary"
-    (click)="onFetch()">Récupérer les appareils</button>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>

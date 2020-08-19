@@ -20,25 +20,33 @@ export class CategorieService {
     setTimeout(
         () => {
             this.getCategorieDB();
+            this.emitCategorieSubject();
         }, 100
       );
     
      
   }
 
+  emitCategorieSubject() {
+    this.categorieSubject.next(this.categories);
+  }
+
   saveCategorie() {
     firebase.database().ref('/categories').set(this.categories);
+    this.emitCategorieSubject();
   }
 
   getCategorieDB() {
     firebase.database().ref('/categories')
     .on('value', (data: DataSnapshot) => {
         this.categories = data.val() ? data.val() : [];
+        this.emitCategorieSubject();
       }
     );
     console.log(this.categories);
   }
   getCategories(){
+    this.emitCategorieSubject();
     return this.categories;
 
   }

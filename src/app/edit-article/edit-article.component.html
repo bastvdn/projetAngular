@@ -6,25 +6,32 @@
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" id="description" class="form-control" formControlName="description">
+        <textarea type="textarea" id="description" class="form-control" formControlName="description"></textarea>
       </div>
       <div class="form-group">
-        <label for="image">image</label>
+        <label for="image">Image</label>
         <input type="text" id="image" class="form-control" formControlName="image">
       </div>
       <div class="form-group">
-        <label for="price">price</label>
+        <label for="price">Prix</label>
         <input type="number" id="price" class="form-control" formControlName="price">
       </div>
       <div class="form-group">
-        <select class="browser-default custom-select">
-          <option selected>Categorie</option>
-          <option *ngFor="let cat of categories" [value]="cat">{{cat.title}}</option>
+        <label>Categorie</label>
+        <div>
+          <select class="browser-default custom-select" formControlName="categorie">
           
-        </select>
+            <option *ngFor="let cat of categories" [value]="cat.title">{{cat.title}}</option>
+            
+          </select>
+        </div>
+        
       </div>
       
 
-      <button type="submit" class="btn btn-primary">Soumettre</button>
-    </form>
+      <button type="submit" class="btn btn-primary" [disabled]="articleForm.invalid">Soumettre</button>
+      
+      
+        </form>
+        
   </div>

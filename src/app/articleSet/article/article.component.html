@@ -1,13 +1,16 @@
-<div class="p-5">
+<div class="p-5" style="margin-top: 20px;">
 <li [ngClass]="{'list-group-item': true }">
 
   <h4>{{ articleTitle }}</h4>
-  <h5>{{ articleDescription }}</h5>
   <h5>categorie: {{ articleCat }}</h5>
-  <img style="height: max-height; width: max-width;max-width: 520px;max-height: 300px; display: block; margin-left: auto; margin-right: auto;" [src]="articleImg" alt="Card image">
-  <h5>{{ articlePrice }} €</h5>
+  <p>{{ articleDescription }}</p>
   
-  <a [routerLink]="[id]">Détail</a>
+  <img style="height: max-height; width: max-width;max-width: 520px;max-height: 300px; display: block; margin-left: auto; margin-right: auto;" [src]="articleImg" alt="Card image">
+  <div class="p-1" style="margin-top: 20px;">
+  <h2>{{ articlePrice }} €</h2>
+  </div>
+  
+  <a [routerLink]="[id]">Consulter</a>
 
 
 </li>
