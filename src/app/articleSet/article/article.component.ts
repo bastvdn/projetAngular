@@ -14,6 +14,8 @@ export class ArticleComponent implements OnInit {
   @Input() articlePrice: string;
   @Input() image: string;
   @Input() articleCat: string;
+  @Input() articleImg: string;
+  
   
 
   @Input() id: number;

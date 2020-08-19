@@ -23,16 +23,19 @@ export class SingleArticleComponent implements OnInit {
   constructor(private articleService: ArticleService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
-    const id = this.route.snapshot.params['id'];
-
-    this.article = this.articleService.getArticleById(+id);
+    setTimeout(
+      () => {
+        const id = this.route.snapshot.params['id'];
+        this.article = this.articleService.getArticleById(+id);
     this.title = this.article.title;
     this.description = this.article.description;
     this.image = this.article.image;
     this.price = this.article.price;
     this.author = this.article.Author.username;
-    console.log("auteur :" + this.author);
+    console.log("auteur :" + this.image);
+      }, 500
+    );
+   
 
   }
 

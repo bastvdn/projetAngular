@@ -1,5 +1,13 @@
 
 <div class="container">
+  <button class="btn btn-primary"
+  (click)="onFetch()">Récupérer les appareils</button>
+  <div ngbDropdown class="d-inline-block">
+    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Categorie</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem *ngFor="let cat of categories" [routerlink]= "[cat]">{{cat.title}}</button>
+    </div>
+  </div>
     <ul>
       <app-article  *ngFor="let article of articles"
                      [id]="article.id"
@@ -7,16 +15,19 @@
                      [articleDescription]="article.description"
                      [articlePrice]="article.price"
                      [articleCat]="article.categorie.title"
+                     [articleImg]="article.image" 
                     ></app-article>
     </ul>
+    
     <button class="btn btn-primary"
         (click)="onSave()">Enregistrer les appareils</button>
 
     <button class="btn btn-primary"
     (click)="onFetch()">Récupérer les appareils</button>
-
-
-  
     
+    <div class="alert alert-primary" role="alert">
+      This is a primary alert—check it out!
+    </div>
+
   </div>
   

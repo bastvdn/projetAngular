@@ -2,11 +2,23 @@
 <p> Description : {{ description }}</p>
 
 <div width="640px" height="400px">
-    <img style="height: max-height; width: max-width;max-width: 640px;max-height: 400px; display: block; margin-left: auto; margin-right: auto;" src="{{ image }}" alt="Card image">
+    <img style="height: max-height; width: max-width;max-width: 640px;max-height: 400px; display: block; margin-left: auto; margin-right: auto;" [src]="image" alt="Card image">
 </div>
+
+
 <h3>{{ price }} €</h3>
 <h3>Par {{ author }}</h3>
 <a routerLink="/articles">Retour à la liste</a>
 
 <button class="btn btn-primary"
     (click)="onFetch()">Récupérer les appareils</button>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
